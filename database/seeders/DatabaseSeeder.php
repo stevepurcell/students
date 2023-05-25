@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Student;
+use App\Models\Guardian;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,5 +21,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'smp103@gmail.com',
             'password' => bcrypt('password'),
         ]);
+
+        Student::factory(10)
+            ->has(Guardian::factory()->count(3))
+            ->create();
+
+        $this->call(StandardSeeder::class);
     }
 }
